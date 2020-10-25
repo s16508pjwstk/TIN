@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "TIN2:build"
+            "browserTarget": "TIN2:build",
+            "port": 4201
           },
           "configurations": {
             "production": {
