@@ -39,6 +39,9 @@ import {IEvent} from './shared/event.model';
     .well div {
       color: #bbb;
     }
+    div {
+      max-width: 400px;
+    }
   `]
 })
 
