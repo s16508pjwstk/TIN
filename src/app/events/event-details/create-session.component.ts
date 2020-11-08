@@ -7,6 +7,41 @@ import {ISession} from '../shared/event.model';
   selector: 'create-session',
   templateUrl: './create-session.component.html',
   styles: [`
+    /*.sessions-buttons {*/
+    /*    margin-top: 30px;*/
+    /*    margin-left: 170px;*/
+    /*}*/
+    h3 {
+      color: lightgray;
+    }
+    label {
+      color: lightgray;
+    }
+
+    .sessions-buttons {
+      background-color: #4E5D6C;
+      border: none;
+      color: white;
+      padding: 7px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    form div {
+      padding: 10px;
+    }
+
+    form div label {
+      margin-right: 50px;
+    }
+    input {
+      width: 200px;
+    }
+
+
     em { float: right; color: #E05C65; padding-left: 10px; }
     .error input, .error select, .error textarea { background-color: #E3C3C5; }
     .error ::-webkit-input-placeholder { color: #999; }

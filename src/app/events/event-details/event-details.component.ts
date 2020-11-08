@@ -16,6 +16,36 @@ import {IEvent, ISession} from '../shared/event.model';
     a {
       cursor: pointer;
     }
+    .create-session-container {
+      margin-left: 150px;
+    }
+    #sorting {
+      display:inline-block;
+    }
+    .button-sorting {
+      background-color: #4E5D6C;
+      border: none;
+      color: white;
+      padding: 7px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button-add-session {
+      background-color: #DF691A;
+      border: none;
+      color: white;
+      padding: 7px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
   `]
 })
 export class EventDetailsComponent implements OnInit {

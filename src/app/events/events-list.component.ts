@@ -7,13 +7,20 @@ import {EventService} from './shared/event.service';
       <h1>Upcoming Angular Events</h1>
       <hr/>
       <div class="container">
-        <div style="padding-left: 250px" *ngFor="let event of events" class="col-md-5">
+        <div style="height: 210px; width: 460px; margin-right: 250px" *ngFor="let event of events" class="hoverwell">
 <!--        <div *ngFor="let event of events">-->
         <event-thumbnail style="padding: 30px 0px 30px 400px;" (click)="handleThumbnailClick(event.name)" [event] = event></event-thumbnail>
         </div>
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    h1 {
+      margin-left: 100px;
+      font-weight: bold;
+      color: white;
+    }
+  `]
 })
 export class EventsListComponent implements OnInit {
   events: any[];

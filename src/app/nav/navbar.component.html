@@ -31,9 +31,9 @@
 <div>
   <div style="width: 80%; padding-left: 100px">
     <ul>
-      <li><a class="active" href="#home">ngEvents</a></li>
+      <li><a href="#home">ngEvents</a></li>
       <li><a href="events">All Events</a></li>
-      <li><a href="#contact">Create Event</a></li>
+      <li><a [routerLink]="['/events/new']">Create Event</a></li>
       <li><a href="#about">Events</a></li>
 <!--      <form style="float: right">-->
       <li>
@@ -42,6 +42,7 @@
           <button>Search</button>
         </div>
       </li>
+
 <!--      </form>-->
     </ul>
   </div>

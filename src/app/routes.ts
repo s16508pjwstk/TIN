@@ -2,9 +2,10 @@ import {EventsListComponent} from './events/events-list.component';
 import {Routes} from '@angular/router';
 import {EventDetailsComponent} from './events/event-details/event-details.component';
 import {EventRouteActivator} from './events/event-details/event-route-activator.service';
+import {CreateEventComponent} from './events/create-event.component';
 
 export const appRoutes: Routes = [
-  // { path: 'events/new', component: CreateEventComponent },
+  { path: 'events/new', component: CreateEventComponent },
   { path: 'events', component: EventsListComponent },
   { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivator] },
   // { path: 'events/session/new', component: CreateSessionComponent },

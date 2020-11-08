@@ -6,10 +6,11 @@ import {IEvent} from './shared/event.model';
   template: `
 
 <!--  <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">-->
-<div [routerLink]="['/events', event.id]">
-    <h2>{{event.name}}</h2>
+<div [routerLink]="['/events', event.id]" class="well thumbnail">
+    <h2 class="event-name">{{event.name}}</h2>
     <div>Date: {{event.date | date}}</div>
-    <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">
+<!--    <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">-->
+  <div [ngSwitch]="event?.time">
       Time: {{event.time}}
       <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
       <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
@@ -28,10 +29,14 @@ import {IEvent} from './shared/event.model';
   </div>
 `,
   styles: [`
+    .event-name {
+      font-weight: bold;
+      color: white;
+    }
     .green { color: #003300 !important;}
-    .bold { font-weight: bold;}
     .thumbnail {
       min-height: 210px;
+      padding-left: 30px;
     }
     .pad-left {
       margin-left: 10px;
