@@ -16,6 +16,8 @@ import {DurationPipe} from './events/shared/duration.pipe';
 import {CollapsibleWellComponent} from './common/collapsible-well.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CreateEventComponent} from './events/create-event.component';
+import {NavbarService} from './nav/navbar.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {CreateEventComponent} from './events/create-event.component';
     CreateEventComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     RouterModule,
     RouterModule.forRoot(appRoutes),
@@ -39,7 +42,8 @@ import {CreateEventComponent} from './events/create-event.component';
   ],
   providers: [
     EventService,
-    EventRouteActivator
+    EventRouteActivator,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })

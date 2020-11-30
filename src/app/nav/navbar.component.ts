@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {NavbarService} from './navbar.service';
 
 @Component({
   selector: 'nav-bar',
@@ -11,5 +12,16 @@ import {Component} from "@angular/core";
 })
 
 export class NavbarComponent {
+
+  constructor(private navbarService: NavbarService) {
+  }
+
+  public checkCore() {
+    console.log('checkCore');
+    this.navbarService.testCore().subscribe((res) => {
+      console.log('succ');
+    }, error => {});
+  }
+
 
 }
