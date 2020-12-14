@@ -1,18 +1,31 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {ISession} from '../shared/event.model';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ISession, ISessionHibernate} from '../shared/event.model';
+import {EventService} from '../shared/event.service';
 
 @Component({
   selector: 'session-list',
   templateUrl: './session-list.component.html'
 })
-export class SessionListComponent implements OnChanges {
-  @Input()
-  public sessions: ISession[];
+export class SessionListComponent implements OnChanges, OnInit {
+  // @Input()
+  // public sessions: ISession[];
   @Input()
   public filterBy: string;
   @Input()
   public sortBy: string;
-  public visibleSessions: ISession[] = [];
+  public visibleSessions: ISessionHibernate[] = [];
+
+  private sessions: ISession[];
+
+  constructor(private eventService: EventService) {
+  }
+
+  ngOnInit(): void {
+    this.eventService.getSessions().subscribe(res => {
+      console.log(JSON.stringify(res));
+      this.visibleSessions = res;
+    }, error => {});
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.sessions) {
@@ -30,6 +43,8 @@ export class SessionListComponent implements OnChanges {
       });
     }
   }
+
+
 
 }
 

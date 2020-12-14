@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from './shared/event.service';
+import {IEvent} from './shared/event.model';
 
 @Component({
   template: `
@@ -23,13 +24,21 @@ import {EventService} from './shared/event.service';
   `]
 })
 export class EventsListComponent implements OnInit {
-  events: any[];
+  events: IEvent[] = [];
   constructor(private eventService: EventService) {
   }
 
   ngOnInit() {
-    console.log(JSON.stringify(this.eventService.getEvents()));
-    this.events = this.eventService.getEvents();
+    // console.log(JSON.stringify(this.eventService.getEvents()));
+    this.eventService.getEvents().subscribe(res => {
+      console.log(JSON.stringify(res));
+      // for (const resKey in res) {
+      //   this.events.push(res[resKey]);
+      // }
+      // console.log(JSON.stringify(this.events));
+      this.events = res;
+    }, error => console.log(JSON.stringify(error)));
+    // this.events = this.eventService.getEvents();
   }
 
   handleThumbnailClick(eventName) {

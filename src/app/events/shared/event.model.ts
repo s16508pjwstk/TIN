@@ -23,3 +23,12 @@ export interface ISession {
   abstract: string;
   voters: string[];
 }
+
+export interface ISessionHibernate {
+  id: number;
+  name: string;
+  presenter: string;
+  duration: number;
+  level: string;
+  abstract: string;
+}

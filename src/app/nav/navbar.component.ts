@@ -20,6 +20,7 @@ export class NavbarComponent {
     console.log('checkCore');
     this.navbarService.testCore().subscribe((res) => {
       console.log('succ');
+      console.log(res);
     }, error => {});
   }
 
