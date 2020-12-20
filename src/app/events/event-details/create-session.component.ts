@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ISession} from '../shared/event.model';
+import {ISession, ISessionHibernate} from '../shared/event.model';
 // import {restrictedWords} from '../shared/restricted-words.validator';
 
 @Component({
@@ -51,6 +51,8 @@ import {ISession} from '../shared/event.model';
   `]
 })
 export class CreateSessionComponent implements OnInit {
+  @Input()
+  public eventId: number
   @Output()
   public saveNewSession = new EventEmitter();
   @Output()
@@ -80,14 +82,15 @@ export class CreateSessionComponent implements OnInit {
 
 
   saveSession(formValues): void {
-    let session: ISession = {
+    let session: ISessionHibernate = {
       id: undefined,
+      eventId: this.eventId,
       name: formValues.name,
       duration: +formValues.duration,
       level: formValues.level,
       presenter: formValues.presenter,
-      abstract: formValues.abstract,
-      voters: []
+      abstractField: formValues.abstract,
+      // voters: []
     }
     console.log(session)
     this.saveNewSession.emit(session)

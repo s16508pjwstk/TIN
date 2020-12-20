@@ -10,18 +10,20 @@ export class SessionListComponent implements OnChanges, OnInit {
   // @Input()
   // public sessions: ISession[];
   @Input()
+  public eventId: number
+  @Input()
   public filterBy: string;
   @Input()
   public sortBy: string;
   public visibleSessions: ISessionHibernate[] = [];
 
-  private sessions: ISession[];
+  private sessions: ISessionHibernate[];
 
   constructor(private eventService: EventService) {
   }
 
   ngOnInit(): void {
-    this.eventService.getSessions().subscribe(res => {
+    this.eventService.getSessions(this.eventId).subscribe(res => {
       console.log(JSON.stringify(res));
       this.visibleSessions = res;
     }, error => {});
@@ -30,7 +32,9 @@ export class SessionListComponent implements OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.sessions) {
       this.filterSessions(this.filterBy);
-      this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc);
+      if (this.sortBy === 'name') {
+        this.visibleSessions.sort(sortByNameAsc);
+      }
     }
   }
 
@@ -48,7 +52,7 @@ export class SessionListComponent implements OnChanges, OnInit {
 
 }
 
-function sortByNameAsc(s1: ISession, s2: ISession) {
+function sortByNameAsc(s1: ISessionHibernate, s2: ISessionHibernate) {
   if (s1.name > s2.name) {
     return 1;
   } else if (s1.name === s2.name) {

@@ -18,6 +18,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CreateEventComponent} from './events/create-event.component';
 import {NavbarService} from './nav/navbar.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {CreateEventService} from './events/create-event.service';
+import {EventDetailsService} from './events/event-details/event-details.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   providers: [
     EventService,
     EventRouteActivator,
-    NavbarService
+    NavbarService,
+    CreateEventService,
+    EventDetailsService
   ],
   bootstrap: [AppComponent]
 })

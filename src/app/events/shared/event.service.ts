@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {IEvent, ISession} from './event.model';
+import {IEvent, ISession, ISessionHibernate} from './event.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -14,8 +14,8 @@ export class EventService {
     // return EVENTS;
   }
 
-  getSessions(): Observable<ISession[]> {
-    return this.httpClient.get<ISession[]>('http://localhost:4202/getSessions/1');
+  getSessions(eventId: number): Observable<ISessionHibernate[]> {
+    return this.httpClient.get<ISessionHibernate[]>('http://localhost:4202/getSessions/' + eventId);
   }
 
   getEvent(id: number): IEvent {

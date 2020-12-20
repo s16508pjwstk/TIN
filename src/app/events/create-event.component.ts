@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {EventService} from './shared/event.service';
+import {EventDTO} from './create-event-types';
+import {CreateEventService} from './create-event.service';
 
 @Component({
   templateUrl: './create-event.component.html',
@@ -43,10 +45,20 @@ import {EventService} from './shared/event.service';
 export class CreateEventComponent {
   public newEvent;
   private isDirty = true;
-  constructor(private router: Router, private eventService: EventService) {
+
+  private event = new EventDTO();
+  constructor(private router: Router, private eventService: EventService, private createEventService: CreateEventService) {
   }
 
   saveEvent(formValues) {
+    console.log('formvalues: ' + JSON.stringify(formValues));
+    this.event = formValues;
+    this.createEventService.postEvent(this.event).subscribe(res => {
+      console.log('posted')
+    }, error => {})
+
+
+
     this.eventService.saveEvent(formValues);
     this.isDirty = false;
     this.router.navigate(['/events']);

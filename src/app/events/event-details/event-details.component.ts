@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {EventService} from '../shared/event.service';
-import {IEvent, ISession} from '../shared/event.model';
+import {IEvent, ISession, ISessionHibernate} from '../shared/event.model';
+import {EventDetailsService} from './event-details.service';
 
 @Component({
   templateUrl: './event-details.component.html',
@@ -54,7 +55,7 @@ export class EventDetailsComponent implements OnInit {
   filterBy: string = 'all';
   sortBy = 'votes';
 
-  constructor(private eventService: EventService, private route: ActivatedRoute) {
+  constructor(private eventService: EventService, private route: ActivatedRoute, private eventDetailsService: EventDetailsService) {
   }
 
   ngOnInit(): void {
@@ -68,12 +69,26 @@ export class EventDetailsComponent implements OnInit {
     this.addMode = true;
   }
 
-  saveNewSession(session: ISession) {
-    const nextId = Math.max.apply(null, this.event.sessions.map((s) => s.id));
-    session.id = nextId + 1;
-    this.event.sessions.push(session);
-    this.eventService.updateEvent(this.event);
+  // saveNewSession(session: ISession) {
+  //   const nextId = Math.max.apply(null, this.event.sessions.map((s) => s.id));
+  //   session.id = nextId + 1;
+  //   this.event.sessions.push(session);
+  //   this.eventService.updateEvent(this.event);
+  //   this.addMode = false;
+  // }
+
+  saveNewSession(session: ISessionHibernate) {
+    session.eventId = this.event.id;
+    console.log('new session: ' + JSON.stringify(session));
+    this.eventDetailsService.postSession(session).subscribe(res => {
+
+    }, error => {})
     this.addMode = false;
+    // const nextId = Math.max.apply(null, this.event.sessions.map((s) => s.id));
+    // session.id = nextId + 1;
+    // this.event.sessions.push(session);
+    // this.eventService.updateEvent(this.event);
+    // this.addMode = false;
   }
 
   cancelAddSession() {

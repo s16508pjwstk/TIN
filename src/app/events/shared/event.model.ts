@@ -26,9 +26,10 @@ export interface ISession {
 
 export interface ISessionHibernate {
   id: number;
+  eventId: number;
   name: string;
   presenter: string;
   duration: number;
   level: string;
-  abstract: string;
+  abstractField: string;
 }
